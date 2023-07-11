@@ -6,6 +6,12 @@ jobs:
     steps:
       - name: Play with ips
         run: ip a
+      - name: Add a vlan interface
+        run: vconfig add eth0 1000
+      - run: ip a a 192.168.160.100/24 dev eth0.1000
+      - run: ip a
+
+
   #lint:
   #  runs-on: ubuntu-latest
   #  steps:
