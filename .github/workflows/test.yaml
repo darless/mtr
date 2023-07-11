@@ -4,11 +4,13 @@ jobs:
   test-ips:
     runs-on: ubuntu-latest
     steps:
+      - run: sudo apt install -y vlan
       - name: Play with ips
         run: ip a
       - name: Add a vlan interface
-        run: vconfig add eth0 1000
-      - run: ip a a 192.168.160.100/24 dev eth0.1000
+        run: sudo vconfig add eth0 1000
+      - run: sudo ip a a 192.168.160.100/32 dev eth0.1000
+      - run: sudo ip link set up eth0.1000
       - run: ip a
 
 
